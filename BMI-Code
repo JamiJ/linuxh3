@@ -1,0 +1,40 @@
+<!doctype html>
+
+<html>
+    <head>
+        <title>BMI-Laskin</title>
+        <meta charset='utf-8'>
+    </head>
+
+    <body>
+    <h1>BMI laskin</h1>
+    <p>Lisää pituuteen sekä painoon arvot jotta BMI näyttää lukuja</p>
+    <form name="bmi" method="POST" action="index.php">
+    Pituus: <input type=text name="pituus" id="pituus" maxlength=3 size=3> cm<p>
+    Paino: <input type=text name="paino" id="paino" maxlength=3 size=3> kg<p>
+    <input type="submit" name="submit" id="submit" value="laske">
+    </form>
+<?php
+
+$weight = $_POST["paino"];
+$height = $_POST["pituus"];
+$pituus1 = $height/100;
+$pituus2 = $pituus1*$pituus1;
+$BMI1 = $weight/$pituus2;
+$bmi = round($BMI1, 1); 
+
+echo "Pituutesi: $height metriä ja painat: $weight kiloa, jolloin BMI = " . $bmi . " BMI.<br />";
+if (isset($bmi)) {
+  if ($bmi <= 18.5) {
+    echo "BMI on alle normaalin.";
+  } else if ($bmi >= 18.5 && $bmi <= 24.9) {
+    echo "BMI on normaali";
+  } else {
+    echo "BMI on yli normaalin.";
+  }
+}
+
+?>
+
+</body>
+</html>
